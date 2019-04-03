@@ -35,3 +35,14 @@ for num in range(101):
         continue
     sum += num
 print(sum)  # 返回结果应为0-49中奇数的总和
+
+# 列表生成式 即List Comprehensions，例如要生成[1,2,3]可写成list(range(1,4))
+print(list(range(1, 4)))
+# 复杂列表的情况 假设要输出[1*1,2*2,3*3]
+print([x*x for x in range(1, 4)])  # 写列表生成式时，把要生成的元素x*x放在最前面，后面加上for循环
+# 也可以加上if条件判断，假设仅要输出偶数的平方
+print([x*x for x in range(1, 4) if x % 2 == 0])
+# 运用两层循环，达到全排列的效果
+print([x+y for x in 'ABC' for y in 'XYZ']) # 返回['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+# 配合函数，可以把一个列表中的字符串全部转换为大写
+print([name.upper() for name in names]) # 返回['KOURTNEY', 'KIM', 'KHLOE', 'KENDALL', 'KYLIE']

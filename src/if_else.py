@@ -26,7 +26,6 @@ else:
 # 25-28：过重
 # 28-32：肥胖
 # 高于32：严重肥胖
-
 w = input('请输入体重(kg)：')
 h = input('请输入身高(cm)：')
 #此处用到了异常捕获，请查看try_except.py教程
@@ -36,7 +35,6 @@ try:
 except:
     print('请输入正确的数字格式！')
 bmi = w/h/h
-
 if bmi < 18.5:
     print('您的BMI指数是%f' % bmi+',参考指标：过轻')
 elif bmi <= 25:
