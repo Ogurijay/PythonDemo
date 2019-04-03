@@ -1,1 +1,11 @@
-# PythonDemo
+#Python自学笔记
+阅读顺序
+1.datatype.py
+2.str.py
+3.list_tuple.py
+4.dist_set.py
+5.for_while.py
+6.if_else.py
+7.function.py
+8.iteration.py
+9.generator.py
