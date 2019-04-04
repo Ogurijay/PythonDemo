@@ -2,6 +2,7 @@
 
  > 阅读顺序
 
+## Course1 Python基础
  * 1.datatype.py --数据类型
  * 2.str.py --字符串处理
  * 3.list_tuple.py --列表
@@ -11,3 +12,6 @@
  * 7.function.py --函数
  * 8.iteration.py --迭代器
  * 9.generator.py --生成器
+
+## Course2 进阶
+ * 1.functionprogram --高阶函数
