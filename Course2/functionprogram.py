@@ -106,3 +106,51 @@ def createCounter():
     return counter
 counterA = createCounter()
 print(counterA(), counterA(), counterA(), counterA(), counterA())
+
+# 匿名函数 可以用lambda x:xxx声明,lambda表示匿名函数，冒号前的x表示函数参数
+print(list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))) # 返回[1, 4, 9, 16, 25, 36, 49, 64, 81]
+#实际这边的lambda可以视为
+def noname(x):
+    return x*x
+# 匿名函数的限制是 只能有一个表达式，不用写return，返回值就是该表达式的结果
+# 匿名函数也是函数对象，所以可以把匿名函数赋值给一个变量，通过变量调用。相同的，也可以把匿名函数当做返回值
+
+# 装饰器(decorator) 指在代码运行期间动态增加功能的行为
+# 函数对象有一个__name__属性，通过调用这个属性返回函数名称
+print(noname.__name__) # 返回noname
+# 本质上，decorator是一个返回函数的高阶函数。
+# 当我们希望调用函数前后自动打印日志，但又不希望修改函数定义时，就需要用到装饰器
+def log(func): # 这里的动作就是定义装饰器，传入函数并返回函数
+    def wapper(*arg,**kw):
+        print('当前操作是运行函数 %s():' % func.__name__)
+        return func(*arg,**kw)
+    return wapper
+# 通过在函数前加@来声明此函数是一个装饰器
+@log
+def now():
+    print('2015-3-25')
+now()
+# 若把装饰器放到printany的定义处，相当于执行了语句
+now=log(now)
+# 如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本
+def log1(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+@log1('execute')
+def now1():
+    print('2015-3-25')
+now1()
+
+# 偏函数(Partial function)
+# 简单来说，python中的偏函数就是通过设定函数中参数的固定值，以达到简单调用函数的效果
+# 例如 int()函数可以把字符串转化为整数，当不输入任何参数时，int('10')结果会返回10,但当传入参数base=8时，会将字符串转换为8进制整数
+print(int('10'))
+print(int('10', base=8)) # 这里的base可以试任何进制
+# 这里我们可以使用functools模块的Partial方法，创建一个偏函数
+import functools
+int2 = functools.partial(int, base=2)
+print(int2('10000'))
